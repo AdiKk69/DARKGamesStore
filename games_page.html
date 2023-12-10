@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK Games STORE - Buy Games</title>
+    <style>
+        body {
+            background-image: url('https://assets-global.website-files.com/63bc89e88fed43ecd62ec947/63eaa912d3d6c1b0889f8131_63ea984b7a33bcb8380d7831_Design%2520trends%25202021%2520-%2520Hero%2520Image.jpeg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Fixed background even when scrolling */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+            margin-left: 200px;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #000000;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100vh; /* Set the height to cover the entire viewport height */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 0; /* Don't allow the sidebar to grow beyond its content */
+            position: fixed; /* Keep the sidebar fixed while scrolling */
+            overflow-y: auto; /* Allow scrolling within the sidebar */
+            left: 0; /* Align the sidebar to the left */
+        }
+
+
+        #sidebar h3 {
+            margin-bottom: 380px; /* Adjust margin for spacing between "Sidebar" and buttons */
+        }
+
+        #content {
+            flex: 1;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            text-align: center; /* Center text horizontally within the container */
+        }
+
+        #search-container {
+            margin-top: 20px; /* Adjust margin for spacing */
+        }
+
+        #search-bar {
+            padding: 10px;
+            width: 40%;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 20px; /* Rounded corners */
+            margin-right: 20px; /* Add margin between search bar and button */
+            margin-left: 200px;
+        }
+
+        #search-button {
+            padding: 10px 20px; /* Adjust padding for a better appearance */
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        #game-container {
+            max-width: 350px;
+            margin: 25px auto; /* Adjust margin for spacing */
+            padding: 20px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            text-align: center; /* Center text within the container */
+            border-radius: 30px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+            background-color: #e8e8e8; /* Added a white background color */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        label {
+            display: block;
+            text-align: center; /* Align the labels to the left */
+            margin-bottom: 5px; /* Added margin for spacing */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px; /* Adjust padding for a better appearance */
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        h1, h2, h3 {
+            text-align: center; /* Center the text horizontally within the container */
+        }
+
+        #cart-container {
+            display: flex;
+            align-items: top;
+        }
+
+        #cart-image {
+            width: 80px; /* Adjusted image size */
+            height: 80px;
+            margin-left: 35px; /* Adjusted margin for spacing */
+        }
+
+        #game-container-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-left: 200px;
+        }
+
+        .game-container {
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #e8e8e8;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+    </style>
+ 
+</head>
+<body>
+    <div id="sidebar">
+        <h3>Welcome, User!</h3>
+            <div id="cart-container">
+        <a href="checkout.html">
+            <img id="cart-image" src="https://png.pngtree.com/png-vector/20190320/ourmid/pngtree-vector-shopping-cart-icon-png-image_850694.jpg" alt="Cart">
+        </a>
+    </div>
+        <button onclick="window.location.href='checkout.html'">View Cart</button>
+        <button onclick="window.location.href='update_user.html'">Update User Details</button>
+        <button onclick="window.location.href='statistics_user.html'">Statistics</button>
+        <button onclick="window.location.href='homepage.html'">Sign Out</button>
+
+    </div>
+
+    <div id="content">
+        <h1>DARK Games Store</h1>
+        
+        <div id="search-container">
+            <input type="text" id="search-bar" placeholder="Search for Games">
+            <button id="search-button">Search</button>
+        </div>
+
+        <div id="data-container"></div>
+
+         <div id="game-container-wrapper">
+            <div id="game-container">
+                <img src="https://www.theouterhaven.net/wp-content/uploads/2019/10/Red-Dead-Redemption-2.png" alt="Game Image 1">
+                <h2>RDR II</h2>
+                <label>Price: $55</label>
+                <button onclick="addToCart('RDR II', 50)">Add To Cart</button>
+            </div>
+    
+            <div id="game-container">
+                <img src="https://imageio.forbes.com/specials-images/imageserve/63424d27fec9cfc1c8de06ab/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds" alt="Game Image 2">
+                <h2>FIFA 23</h2>
+                <label>Price: $25</label>
+                <button onclick="addToCart('FIFA 23', 25)">Add To Cart</button>
+            </div>
+
+            <div id="game-container">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1962663/capsule_616x353.jpg?t=1699574148" alt="Game Image 3">
+                <h2>COD: WARZONE</h2>
+                <label>Price: $40</label>
+                <button onclick="addToCart('COD: WARZONE', 40)">Add To Cart</button>
+            </div>
+        </div>
+
+        <div id="game-container-wrapper">   
+            <div id="game-container">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/M1M5lbWg6QPwf2gx34N3v78v.jpg" alt="Game Image 4">
+                <h2>AC MIRAGE</h2>
+                <label>Price: $50</label>
+                <button onclick="addToCart('AC MIRAGE', 50)">Add To Cart</button>
+            </div>
+
+            <div id="game-container">
+                <img src="https://image.api.playstation.com/vulcan/img/rnd/202010/2217/LsaRVLF2IU2L1FNtu9d3MKLq.jpg" alt="Game Image 4">
+                <h2>GOD OF WAR</h2>
+                <label>Price: $45</label>
+                <button onclick="addToCart('GOD OF WAR', 45)">Add To Cart</button>
+            </div>
+
+            <div id="game-container">
+                <img src="https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpg" alt="Game Image 5">
+                <h2>CYBERPUNK 2077</h2>
+                <label>Price: $40</label>
+                <button onclick="addToCart('CYBERPUNK 2077', 40)">Add To Cart</button>
+            </div>
+        </div>
+
+        <div id="game-container-wrapper">   
+            <div id="game-container">
+                <img src="https://www.harrisburgu.edu/wp-content/uploads/189dce017fb19e3ca1b94b2095d519cc514df22c.jpg" alt="Game Image 4">
+                <h2>ROCKET LEAGUE</h2>
+                <label>Price: $40</label>
+                <button onclick="addToCart('ROCKET LEAGUE', 40)">Add To Cart</button>
+            </div>
+
+            <div id="game-container">
+                <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/capsule_616x353.jpg?t=1695060909" alt="Game Image 4">
+                <h2>GTA V</h2>
+                <label>Price: $35</label>
+                <button onclick="addToCart('GTA V', 35)">Add To Cart</button>
+            </div>
+
+            <div id="game-container">
+                <img src="https://cdn.vox-cdn.com/thumbor/rFXKe1MEkG3SMIBSe87hm6gh6Ks=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/24714384/C4S3_Battle_Pass_Lineup.jpg" alt="Game Image 5">
+                <h2>FORTNITE</h2>
+                <label>Price: $25</label>
+                <button onclick="addToCart('FORTNITE', 25)">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addToCart(name, price) {
+            // Retrieve existing cart items or initialize an empty array
+            const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    
+            // Add the new item to the cart array
+            cartItems.push({ name, price });
+    
+            // Store the updated cart array in sessionStorage
+            sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function searchGames() {
+            console.log('searchGames function called');
+
+            const searchQuery = document.getElementById('search-bar').value.trim().toLowerCase();
+            console.log('Search Query:', searchQuery);
+
+            // Assuming your game containers have unique IDs, use getElementById
+            const gameContainer1 = document.getElementById('game-container1');
+            const gameContainer2 = document.getElementById('game-container2');
+            const gameContainer3 = document.getElementById('game-container3');
+
+            // If the search query is empty, display all game containers
+            if (searchQuery === '') {
+                gameContainer1.style.display = 'flex';
+                gameContainer2.style.display = 'flex';
+                gameContainer3.style.display = 'flex';
+            } else {
+                // Show/hide based on search query
+                const gameName1 = gameContainer1.querySelector('h2').innerText.toLowerCase();
+                const shouldShow1 = gameName1.includes(searchQuery);
+                gameContainer1.style.display = shouldShow1 ? 'flex' : 'none';
+
+                const gameName2 = gameContainer2.querySelector('h2').innerText.toLowerCase();
+                const shouldShow2 = gameName2.includes(searchQuery);
+                gameContainer2.style.display = shouldShow2 ? 'flex' : 'none';
+
+                const gameName3 = gameContainer3.querySelector('h2').innerText.toLowerCase();
+                const shouldShow3 = gameName3.includes(searchQuery);
+                gameContainer3.style.display = shouldShow3 ? 'flex' : 'none';
+            }
+        }
+
+        document.getElementById('search-button').addEventListener('click', searchGames);
+
+    </script>
+</body>
+</html>

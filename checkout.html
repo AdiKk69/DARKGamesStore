@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK Games STORE - Checkout</title>
+    <style>
+        body {
+            background-image: url('https://assets-global.website-files.com/63bc89e88fed43ecd62ec947/63eaa912d3d6c1b0889f8131_63ea984b7a33bcb8380d7831_Design%2520trends%25202021%2520-%2520Hero%2520Image.jpeg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Fixed background even when scrolling */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #000000;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* Set the height to 100% to fill the entire viewport height */
+            color: #fff; /* Set text color to white for better visibility */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+            justify-content: space-between; /* Space items evenly in the container */
+        }
+
+        #sidebar h3 {
+            margin-bottom: 20px; /* Adjust margin for spacing between "Sidebar" and buttons */
+        }
+
+        #content {
+            flex: 1;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #login-container {
+            max-width: 400px;
+            margin: 70px auto; /* Adjust margin for spacing */
+            padding: 20px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            text-align: center; /* Center text within the container */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+            background-color: #e8e8e8; /* Added a white background color */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+        }
+
+        #login-container h1 {
+            color: black;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        label {
+            display: block;
+            text-align: left; /* Align the labels to the left */
+            margin-bottom: 5px; /* Added margin for spacing */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px; /* Adjust padding for a better appearance */
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        h1, h2 {
+            text-align: center; /* Center the text horizontally within the container */
+        }
+
+        #create-account-container {
+            text-align: center; /* Center text within the container */
+            margin-top: 20px; /* Adjust margin for spacing */
+        }
+
+        #create-account-btn {
+            margin: -20px auto; /* Adjust margin for spacing */
+            padding: 10px;
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3></h3>
+        <button onclick="window.location.href='games_page.html'">Return to Games Page</button>
+    </div>
+
+    <div id="content">
+        <h1>DARK Games Store</h1>
+        <div id="data-container"></div>
+
+        <div id="login-container">
+            <h1>Cart Contents</h1>
+
+            <div id="cart-details"></div>
+
+            <!-- <label for="username">Game:</label>
+
+            <label for="password">Price:</label>
+            <br>
+            <label for="username">Game:</label>
+
+            <label for="password">Price:</label>
+            <br>
+            <label for="password">Total:</label> -->
+            <br>
+            <label for="ccnum">Credit Card Number:</label>
+            <input type="text" id="ccnum" name="ccnum" required >
+        
+            <label for="exp_date">Credit Card Expiry Date:</label>
+            <input type="text" id="exp_date" name="exp_date" required>
+        
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <button onclick="window.location.href='thank_you.html'">Purchase</button>
+        </div>
+    </div>
+    <script>
+        // Retrieve cart items from sessionStorage
+        const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+
+        // Display cart details
+        const cartDetailsContainer = document.getElementById('cart-details');
+        cartItems.forEach(item => {
+            const gameLabel = document.createElement('label');
+            gameLabel.textContent = `Game: ${item.name}`;
+            cartDetailsContainer.appendChild(gameLabel);
+
+            const priceLabel = document.createElement('label');
+            priceLabel.textContent = `Price: $${item.price}`;
+            cartDetailsContainer.appendChild(priceLabel);
+
+            const breakElement = document.createElement('br');
+            cartDetailsContainer.appendChild(breakElement);
+        });
+
+        // Display total price
+        const totalPriceLabel = document.createElement('label');
+        totalPriceLabel.textContent = `Total: $${calculateTotal(cartItems)}`;
+        cartDetailsContainer.appendChild(totalPriceLabel);
+
+        // Function to calculate total price
+        function calculateTotal(items) {
+            return items.reduce((total, item) => total + item.price, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK Games STORE - Update / Delete User Details</title>
+    <style>
+        body {
+            background-image: url('https://assets-global.website-files.com/63bc89e88fed43ecd62ec947/63eaa912d3d6c1b0889f8131_63ea984b7a33bcb8380d7831_Design%2520trends%25202021%2520-%2520Hero%2520Image.jpeg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Fixed background even when scrolling */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #000000;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* Set the height to 100% to fill the entire viewport height */
+            color: #fff; /* Set text color to white for better visibility */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+            justify-content: space-between; /* Space items evenly in the container */
+        }
+
+        #sidebar h3 {
+            margin-bottom: 20px; /* Adjust margin for spacing between "Sidebar" and buttons */
+        }
+
+        #content {
+            flex: 1;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #login-container {
+            max-width: 400px;
+            margin: 80px auto; /* Adjust margin for spacing */
+            padding: 20px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            text-align: center; /* Center text within the container */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+            background-color: #e8e8e8; /* Added a white background color */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+        }
+
+        #login-container h1 {
+            color: black;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        label {
+            display: block;
+            text-align: left; /* Align the labels to the left */
+            margin-bottom: 5px; /* Added margin for spacing */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px; /* Adjust padding for a better appearance */
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        h1, h2 {
+            text-align: center; /* Center the text horizontally within the container */
+        }
+
+        #create-account-container {
+            text-align: center; /* Center text within the container */
+            margin-top: 20px; /* Adjust margin for spacing */
+        }
+
+        #create-account-btn {
+            margin: -20px auto; /* Adjust margin for spacing */
+            padding: 10px;
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3></h3>
+        <div id="create-account-container">
+            <button onclick="window.location.href='admin_games_page.html'">Return to Admin Homepage</button>
+        </div>
+    </div>
+
+    <div id="content">
+        <h1>DARK Games Store</h1>
+        <div id="data-container"></div>
+
+        
+
+<!--         <div id="login-container">
+            <h1>Update / Delete User Details</h1>
+            <form onsubmit="login(event)">
+
+                <label for="userID">User ID:</label>
+                <input type="text" id="userID" name="userID" required>
+            
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            
+                <label for="userType">User Type:</label>
+                <input type="text" id="userType" name="userType" required>
+                
+            </form>
+        </div> -->
+
+        <!-- Inside the #login-container -->
+        <div id="login-container">
+            <h2 id="userIDLabel"></h2>
+            <label id="usernameLabel"></label>
+            <label id="passwordLabel"></label>
+            <label id="userTypeLabel"></label>
+        </div>
+
+
+        <div id="create-account-container">
+            <button id = "prevbtn"><< PREV</button>
+            <!-- <button id="updateBtn">UPDATE</button> -->
+            <button id="deleteBtn">DELETE</button>
+            <button id = "nextbtn">NEXT >></button>
+        </div>
+    </div>
+    
+    <script>
+        let userID = 10000;
+    function fetchData() {
+        fetch(`http://localhost:3000/getUser/${userID}`)
+        .then(response => response.json())
+        .then(data => displayData(data))
+        .catch(error => console.error('Error fetching data:', error));
+    }
+    
+    function decrement () {
+        if (userID == 10000) return;
+        userID--;
+        fetchData();
+    }
+
+    function increment () {
+        if (userID == 10011) return;
+        userID++;
+        fetchData();
+    }
+
+    function onload() {
+        fetchData();
+    }
+
+    function displayData(data) {
+        const userIDLabel = document.getElementById('userIDLabel');
+        const usernameLabel = document.getElementById('usernameLabel');
+        const passwordLabel = document.getElementById('passwordLabel');
+        const userTypeLabel = document.getElementById('userTypeLabel');
+        
+    console.log(JSON.stringify(data));
+
+        if (data && data.user) {
+            const user = data.user;
+
+            userIDLabel.textContent = `User ID: ${user.user_id}`;
+            usernameLabel.textContent = `Username: ${user.username}`;
+            passwordLabel.textContent = `Password: ${user.upassword}`;
+            userTypeLabel.textContent = `User Type: ${user.usertype}`;
+        } else {
+            console.log('No data available.');
+        }
+    }
+    const deleteData = async () =>{
+        const data = await fetch(`http://localhost:3000/deleteUser/${userID}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userID
+            })
+        })
+        const res = await data.json();
+        const nextBtn = document.getElementById('nextbtn');
+        nextBtn.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchData);
+
+    document.getElementById("prevbtn").addEventListener("click", decrement);
+    document.getElementById("nextbtn").addEventListener("click", increment);
+    document.getElementById("deleteBtn").addEventListener("click", deleteData);
+
+    </script>
+</body>
+</html>

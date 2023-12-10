@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK Games STORE - View / Delete Games</title>
+    <style>
+        body {
+            background-image: url('https://assets-global.website-files.com/63bc89e88fed43ecd62ec947/63eaa912d3d6c1b0889f8131_63ea984b7a33bcb8380d7831_Design%2520trends%25202021%2520-%2520Hero%2520Image.jpeg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Fixed background even when scrolling */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #000000;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* Set the height to 100% to fill the entire viewport height */
+            color: #fff; /* Set text color to white for better visibility */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+            justify-content: space-between; /* Space items evenly in the container */
+        }
+
+        #sidebar h3 {
+            margin-bottom: 20px; /* Adjust margin for spacing between "Sidebar" and buttons */
+        }
+
+        #content {
+            flex: 1;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #login-container {
+            max-width: 400px;
+            margin: 60px auto; /* Adjust margin for spacing */
+            padding: 20px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            text-align: center; /* Center text within the container */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+            background-color: #e8e8e8; /* Added a white background color */
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+        }
+
+        #login-container h1 {
+            color: black;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        label {
+            display: block;
+            text-align: left; /* Align the labels to the left */
+            margin-bottom: 5px; /* Added margin for spacing */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px; /* Adjust padding for a better appearance */
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        h1, h2 {
+            text-align: center; /* Center the text horizontally within the container */
+        }
+
+        #create-account-container {
+            text-align: center; /* Center text within the container */
+            margin-top: 20px; /* Adjust margin for spacing */
+        }
+
+        #create-account-btn {
+            margin: -20px auto; /* Adjust margin for spacing */
+            padding: 10px;
+            background-color: rgb(79, 19, 183); /* Green background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Add border-radius for rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3></h3>
+        <div id="create-account-container">
+            <button onclick="window.location.href='admin_games_page.html'">Return to Admin Homepage</button>
+        </div>
+    </div>
+
+    <div id="content">
+        <h1>DARK Games Store</h1>
+        <div id="data-container"></div>
+
+        <!-- <div id="login-container">
+            <h1>Update / Delete Game</h1>
+            <form onsubmit="login(event)">
+                <label for="username">Game ID:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="username">Game Name:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="username">Price:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="username">Quantity:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="username">Image URL:</label>
+                <input type="text" id="username" name="username" required>
+
+            </form>
+        </div> -->
+
+        <div id="login-container">
+            <h2 id="gameIDLabel"></h2>
+            <label id="gamenameLabel"></label>
+            <label id="priceLabel"></label>
+            <label id="quantityLabel"></label>
+            <!-- <label id="imageURLLabel"></label> -->
+        </div>
+
+        <div id="create-account-container">
+            <button id = "prevbtn"><< PREV</button>
+            <button id="deleteBtn">DELETE</button>
+            <button id = "nextbtn">NEXT >></button>
+        </div>
+    </div>
+
+    <script>
+        let gameID = 20000;
+    function fetchData() {
+        fetch(`http://localhost:3000/getGames/${gameID}`)
+        .then(response => response.json())
+        .then(data => displayData(data))
+        .catch(error => console.error('Error fetching data:', error));
+    }
+    
+    function decrement () {
+        if (gameID == 20000) return;
+        gameID--;
+        fetchData();
+    }
+
+    function increment () {
+        if (gameID == 20008) return;
+        gameID++;
+        fetchData();
+    }
+
+    function onload() {
+        fetchData();
+    }
+
+    function displayData(data) {
+        const gameIDLabel = document.getElementById('gameIDLabel');
+        const gamenameLabel = document.getElementById('gamenameLabel');
+        const priceLabel = document.getElementById('priceLabel');
+        const quantityLabel = document.getElementById('quantityLabel');
+        // const imageURLLabel = document.getElementById('imageURLLabel');
+        
+    console.log(JSON.stringify(data));
+
+        if (data && data.game) {
+            const game = data.game;
+
+            gameIDLabel.textContent = `Game ID: ${game.game_id}`;
+            gamenameLabel.textContent = `Game Name: ${game.game_name}`;
+            priceLabel.textContent = `Price: ${game.price}`;
+            quantityLabel.textContent = `Quantity: ${game.quantity}`;
+            // imageURLLabel.textContent = `Image URL: ${game.image_url}`;
+        } else {
+            console.log('No data available.');
+        }
+    }
+
+    const deleteData = async () =>{
+        const data = await fetch(`http://localhost:3000/deleteGame/${gameID}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                game_id: gameID
+            })
+        })
+        const res = await data.json();
+ 
+        const nextBtn = document.getElementById('nextbtn');
+        nextBtn.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchData);
+
+    document.getElementById("prevbtn").addEventListener("click", decrement);
+    document.getElementById("nextbtn").addEventListener("click", increment);
+    document.getElementById("deleteBtn").addEventListener("click", deleteData);
+
+    </script>
+</body>
+</html>
